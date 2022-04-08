@@ -3,7 +3,15 @@ const MONSTER_ATTACK_VALUE = 14;
 const STRONG_ATTACK_VALUE = 17;
 const HEAL_VALUE = 20;
 
-let chosenMaxLife = 100;
+const MODE_ATTACK = 'ATTACK';
+const MODE_STRONG_ATTACK = 'STRONG_ATTACK';
+
+const enteredValue = prompt('Maximum life for you and monster.', '100');
+
+let chosenMaxLife = parseInt(enteredValue);
+if(isNaN(chosenMaxLife) || chosenMaxLife <= 0){
+    chosenMaxLife = 100;
+}
 let currentMosterHealth = chosenMaxLife;
 let currentPlaterHealth = chosenMaxLife;
 let hasBonusLife = true;
@@ -36,7 +44,6 @@ function endRound(){
         alert('you have a drow');
     }
 
-
     if(currentMosterHealth < 0 || currentPlaterHealth < 0){
         reset();
     }
@@ -45,9 +52,9 @@ function endRound(){
 
 function attackMonster(mode){
     let maxDamage;
-    if(mode = 'ATTACK'){
+    if(mode === MODE_ATTACK ){
         maxDamage = ATTACK_VALUE
-    }else if(mode = 'STRONG_ATTACK'){
+    }else if(mode === MODE_STRONG_ATTACK){
         maxDamage = STRONG_ATTACK_VALUE;
     }
     const damage = dealMonsterDamage(maxDamage);
@@ -57,11 +64,11 @@ function attackMonster(mode){
 }
 
 function attackHandler(){
-    attackMonster('ATTACK');
+    attackMonster(MODE_ATTACK);
     }
 
 function strongAttackHandler(){
-    attackMonster('STRONG_ATTACK');
+    attackMonster(MODE_STRONG_ATTACK);
 }
 
 function healPlayerHandler(){
