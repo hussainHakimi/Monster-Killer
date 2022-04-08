@@ -10,6 +10,13 @@ let hasBonusLife = true;
 
 adjustHealthBars(chosenMaxLife);
 
+function reset(){
+    currentMosterHealth = chosenMaxLife;
+    currentPlaterHealth = chosenMaxLife;
+    resetGame(chosenMaxLife);
+
+}
+
 function endRound(){
     const initialPlayerHealth = currentPlaterHealth;
     const playerDamage =  dealPlayerDamage(MONSTER_ATTACK_VALUE);
@@ -28,7 +35,13 @@ function endRound(){
     }else if(currentMosterHealth <= 0 && currentPlaterHealth <= 0){
         alert('you have a drow');
     }
+
+
+    if(currentMosterHealth < 0 || currentPlaterHealth < 0){
+        reset();
+    }
 }
+
 
 function attackMonster(mode){
     let maxDamage;
